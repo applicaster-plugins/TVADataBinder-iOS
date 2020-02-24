@@ -73,6 +73,18 @@ class ZPTVACellViewController : CACellViewController {
             }
         }
         
+        if let tag = atomFeed.extensions?["tag"] as? String{
+            if  let style = getStyle(styleName:tag){
+                for (index,label) in self.labelsCollection.enumerated(){
+                    if(index == 0){
+                        label.setColor(key: style.textColor, from: style.styleDic)
+                        label.setBackgroundColor(key: style.backgroundColor, from: style.styleDic)
+                        label.setFont(fontNameKey: style.font, fontSizeKey: style.textSize, from: style.styleDic)
+                    }
+                }
+            }
+        }
+        
         if (atomFeed.mediaGroups.count > 1){
             if let image1Dic = atomFeed.mediaGroups[1] as? APAtomMediaGroup ,let imageUrl  = image1Dic.mediaItemStringURL(forKey: "image1"),
                 let url = URL(string: imageUrl){

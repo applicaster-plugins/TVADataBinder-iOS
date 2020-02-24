@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TVADataBinder"
-  s.version           = '0.1.0'
+  s.version           = '0.2.0'
   s.summary          = "TVADataBinder"
   s.description      = <<-DESC
                         TVADataBinder container.
