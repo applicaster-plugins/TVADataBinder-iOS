@@ -12,14 +12,14 @@
     "platform": "ios",
     "author_name": "Roei Carmel",
     "author_email": "roei.carmel@msapps.mobi",
-    "manifest_version": "0.1.0",
+    "manifest_version": "0.2.0",
     "name": "TVA Data Binder",
     "description": "Data binder For TVA",
     "type": "general",
     "identifier": "TVADataBinder",
     "ui_builder_support": true,
     "dependency_name": "TVADataBinder",
-    "dependency_version": "0.1.0",
+    "dependency_version": "0.2.0",
     "whitelisted_account_ids": [
       "5bb621649adec2000c289f22",
       "5c47af22291767000c8c9065",
@@ -29,7 +29,13 @@
     "deprecated_since_zapp_sdk": "",
     "unsupported_since_zapp_sdk": "",
     "react_native": false,
-    "custom_configuration_fields": [],
+    "custom_configuration_fields": [
+      {
+        "type": "text",
+        "key": "tag_styles_json",
+        "tooltip_text": "Tags style json"
+      }
+    ],
     "targets": [
         "mobile"
     ]

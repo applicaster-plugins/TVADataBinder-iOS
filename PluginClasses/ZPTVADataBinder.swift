@@ -12,6 +12,23 @@ import ComponentsSDK
 
 class ZPDataBinderTVA: ZPGeneralBaseProvider, ZPGeneralPluginUIProtocol {
     
+    required init(configurationJSON: NSDictionary?) {
+        super.init(configurationJSON: configurationJSON)
+        if let config = configurationJSON as? [String:Any]{
+            if(styleArry == nil){
+                getStringJsonFromConfig(config: config)
+            }
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    required init() {
+        super.init()
+    }
+    
     func viewController(options: [AnyHashable: Any]?) -> UIViewController? {
         
         guard let viewController = options?["viewController"] as? UIViewController else {
