@@ -104,6 +104,6 @@ class ZPTVACellViewController : CACellViewController {
     
     override func prepareComponentForReuse() {
         super.prepareComponentForReuse()
-        self.updateUI()
+      //  self.updateUI()
     }    
 }
