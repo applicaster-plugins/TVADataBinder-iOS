@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import ZappGeneralPluginsSDK
 import ApplicasterSDK
-import ComponentsSDK
+import ZappSDK
 import ZappPlugins
 
 class ZPTVACellViewController : CACellViewController {

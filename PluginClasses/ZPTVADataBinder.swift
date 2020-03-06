@@ -8,7 +8,7 @@
 import Foundation
 import ZappGeneralPluginsSDK
 import ApplicasterSDK
-import ComponentsSDK
+import ZappSDK
 
 class ZPDataBinderTVA: ZPGeneralBaseProvider, ZPGeneralPluginUIProtocol {
     

@@ -10,22 +10,20 @@
         "git@github.com:applicaster-plugins/TVADataBinder-iOS.git"
     ],
     "platform": "ios",
-    "author_name": "Roei Carmel",
-    "author_email": "roei.carmel@msapps.mobi",
-    "manifest_version": "0.2.1",
+    "author_name": "Roei Carmel, Pablo Rueda",
+    "author_email": "p.rueda@applicaster.com",
+    "manifest_version": "0.3.0",
     "name": "TVA Data Binder",
     "description": "Data binder For TVA",
     "type": "general",
     "identifier": "TVADataBinder",
     "ui_builder_support": true,
     "dependency_name": "TVADataBinder",
-    "dependency_version": "0.2.1",
+    "dependency_version": "0.3.0",
     "whitelisted_account_ids": [
-      "5bb621649adec2000c289f22",
-      "5c47af22291767000c8c9065",
-      "5d30f1083d716f000c14e86e"
+      "5dcaba3ee648eb000eaf5c0a"
     ],
-    "min_zapp_sdk": "13.0.0-Dev",
+    "min_zapp_sdk": "14.0.0",
     "deprecated_since_zapp_sdk": "",
     "unsupported_since_zapp_sdk": "",
     "react_native": false,
