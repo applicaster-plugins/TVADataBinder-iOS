@@ -14,13 +14,19 @@ class ZPDataBinderTVA: ZPGeneralBaseProvider, ZPGeneralPluginUIProtocol {
     
     required init(configurationJSON: NSDictionary?) {
         super.init(configurationJSON: configurationJSON)
-        if let config = configurationJSON as? [String:Any]{
-            if(styleArry == nil){
-                getStringJsonFromConfig(config: config)
-            }
+        guard let config = configurationJSON as? [String:Any] else{
+            return
+        }
+        if(styleArry == nil){
+            getStringJsonFromConfig(config: config)
+        }
+        
+        if let baseApiUrl = config["favorites_service_base_url"] as? String{
+            baseApi = baseApiUrl
+        }else{
+            baseApi = "https://api.view.televisionacademy.com/api/v1"
         }
     }
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

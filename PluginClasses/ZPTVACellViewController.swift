@@ -48,7 +48,12 @@ class ZPTVACellViewController : CACellViewController {
     }
     
     func populateFeed(with atomFeed: APAtomFeed) {
-        
+        setTags(with: atomFeed)
+        getFavorites(with: atomFeed)
+        setFavoritesActionTapped()
+    }
+    
+    private func setTags(with atomFeed: APAtomFeed){
         if let tag1 = atomFeed.extensions?["tag1"] as? String{
             if  let style = getStyle(styleName:tag1){
                 for (index,label) in self.labelsCollection.enumerated(){
@@ -102,8 +107,61 @@ class ZPTVACellViewController : CACellViewController {
         }
     }
     
+    private func isFavoriteSupported() -> UIButton?{
+        guard let layout = self.currentComponentModel()?.style["layout_name"] as? String , let favoriteBtn  = favoritesButton, layout == "Family_5_horizontal_list_13" || layout == "Family_5_grid_11" || layout == "Family_5_grid_12"  else{
+            return nil
+        }
+        return favoriteBtn
+    }
+
+    private func getFavorites(with atomFeed: APAtomFeed){
+        guard let favoriteBtn = isFavoriteSupported() else{
+            return
+        }
+        favoriteBtn.isHidden = false;
+        getFavouriteState(uid: atomFeed.identifier) { (on) in
+            if let state = on{
+                if(state){
+                    favoriteBtn.isSelected = true
+                }else{
+                    favoriteBtn.isSelected = false
+                }
+            }
+        }
+    }
+    
+    private func setFavoritesActionTapped(){
+        guard let favoriteBtn = isFavoriteSupported() else{
+            return
+        }
+        favoriteBtn.removeTarget(self, action: #selector(favBtnTapped), for: .touchUpInside)
+        favoriteBtn.addTarget(self, action:  #selector(favBtnTapped), for: .touchUpInside)
+    }
+    
+    @objc func favBtnTapped(sender: UIButton!) {
+        guard let atomFeed = atomFeed else {
+            return
+        }
+        if(sender.isSelected){
+            setFavoriteState(uid: atomFeed.identifier, on: false) { (success) in
+                if(success){
+                    DispatchQueue.onMain {
+                        sender.isSelected = false
+                    }
+                }
+            }
+        }else{
+            setFavoriteState(uid: atomFeed.identifier, on: true) { (success) in
+                if(success){
+                    DispatchQueue.onMain {
+                        sender.isSelected = true;
+                    }
+                }
+            }
+        }
+    }
+    
     override func prepareComponentForReuse() {
         super.prepareComponentForReuse()
-      //  self.updateUI()
-    }    
+    }
 }
