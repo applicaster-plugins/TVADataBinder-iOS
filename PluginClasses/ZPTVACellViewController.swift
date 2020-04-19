@@ -108,7 +108,9 @@ class ZPTVACellViewController : CACellViewController {
     }
     
     private func isFavoriteSupported() -> UIButton?{
-        guard let layout = self.currentComponentModel()?.style["layout_name"] as? String , let favoriteBtn  = favoritesButton, layout == "Family_5_horizontal_list_13" || layout == "Family_5_grid_11" || layout == "Family_5_grid_12"  else{
+        guard let layout = self.currentComponentModel()?.style["layout_name"] as? String,
+            let favoriteBtn  = favoritesButton,
+            layout == "Family_5_horizontal_list_13" || layout == "Family_5_grid_11" || layout == "Family_5_grid_12"  else{
             return nil
         }
         return favoriteBtn
@@ -150,6 +152,7 @@ class ZPTVACellViewController : CACellViewController {
                     }
                 }
             }
+            
         }else{
             setFavoriteState(uid: atomFeed.identifier, on: true) { (success) in
                 if(success){
