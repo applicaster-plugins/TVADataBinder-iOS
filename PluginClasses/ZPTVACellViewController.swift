@@ -16,6 +16,7 @@ class ZPTVACellViewController : CACellViewController {
     
     var atomEntry:APAtomEntry?
     var atomFeed: APAtomFeed?
+    let layoutArray = ["Family_5_horizontal_list_13", "Family_5_grid_11", "Family_5_grid_12" ]
     
     override func displayAtomEntry(_ entry: NSObject) {
         if let entry = entry as? APAtomEntry {
@@ -110,7 +111,7 @@ class ZPTVACellViewController : CACellViewController {
     private func isFavoriteSupported() -> UIButton?{
         guard let layout = self.currentComponentModel()?.style["layout_name"] as? String,
             let favoriteBtn  = favoritesButton,
-            layout == "Family_5_horizontal_list_13" || layout == "Family_5_grid_11" || layout == "Family_5_grid_12"  else{
+            layoutArray.contains(layout)  else{
             return nil
         }
         return favoriteBtn
@@ -145,16 +146,16 @@ class ZPTVACellViewController : CACellViewController {
             return
         }
         if(sender.isSelected){
-            setFavoriteState(uid: atomFeed.identifier, on: false) { (success) in
+            deleteFavoriteState(uid: atomFeed.identifier) { (success) in
                 if(success){
                     DispatchQueue.onMain {
                         sender.isSelected = false
                     }
                 }
             }
-            
-        }else{
-            setFavoriteState(uid: atomFeed.identifier, on: true) { (success) in
+        }
+        else{
+            setFavoriteState(uid: atomFeed.identifier) { (success) in
                 if(success){
                     DispatchQueue.onMain {
                         sender.isSelected = true;

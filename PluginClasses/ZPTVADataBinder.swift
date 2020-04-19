@@ -23,7 +23,8 @@ class ZPDataBinderTVA: ZPGeneralBaseProvider, ZPGeneralPluginUIProtocol {
         
         if let baseApiUrl = config["favorites_service_base_url"] as? String{
             baseApi = baseApiUrl
-        }else{
+        }
+        else{
             baseApi = "https://api.view.televisionacademy.com/api/v1"
         }
     }
