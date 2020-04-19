@@ -27,6 +27,7 @@ class ZPDataBinderTVA: ZPGeneralBaseProvider, ZPGeneralPluginUIProtocol {
             baseApi = "https://api.view.televisionacademy.com/api/v1"
         }
     }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

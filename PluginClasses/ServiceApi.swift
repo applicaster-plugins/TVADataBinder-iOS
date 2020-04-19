@@ -12,7 +12,6 @@ let defaults = UserDefaults.standard
 var baseApi :String?
 let favouritePath = "/userlists/favorites/"
 
-
 func getFavouriteState(uid: String, completion: @escaping (( _ on: Bool?) -> Void)){
     guard let token = defaults.string(forKey: tokenKey), let baseApiUrl = baseApi else{
         return
@@ -50,13 +49,13 @@ func setFavoriteState(uid: String, on: Bool, completion: @escaping (( _ success:
     }
     makeRequest(request: request) { (responseJson, response, error) in
         if(response?.statusCode == 200){
-           completion(true)
+            completion(true)
         }else if(response?.statusCode == 404){
-           completion(true)
+            completion(true)
         } else if (response?.statusCode == 204){
-           completion(true)
+            completion(true)
         } else{
-           completion(false)
+            completion(false)
         }
     }
 }
@@ -82,7 +81,6 @@ private func makeRequest(request: NSMutableURLRequest, completion: @escaping ((_
     }
     task.resume()
 }
-
 
 internal extension DispatchQueue {
     static func onMain(_ block: @escaping (() -> Void)) {
