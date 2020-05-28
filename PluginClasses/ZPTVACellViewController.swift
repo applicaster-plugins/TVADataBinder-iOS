@@ -71,6 +71,11 @@ class ZPTVACellViewController : CACellViewController {
             if  let style = getStyle(styleName:tag0){
                 for (index,label) in self.labelsCollection.enumerated(){
                     if(index == 0){
+                        if label.isHidden, label.text == nil {
+                            label.text = tag0
+                            label.isHidden = false
+                        }
+                        
                         label.setColor(key: style.textColor, from: style.styleDic)
                         label.setBackgroundColor(key: style.backgroundColor, from: style.styleDic)
                         label.setFont(fontNameKey: style.font, fontSizeKey: style.textSize, from: style.styleDic)
