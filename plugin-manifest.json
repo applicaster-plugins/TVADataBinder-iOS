@@ -36,7 +36,7 @@
       {
         "type": "text",
         "key": "favorites_service_base_url",
-        "tooltip_text": "Favorites service base url, example: https://api.view.televisionacademy.com/api/v1"
+        "tooltip_text": "Favorites service base url, example: https://api.view.televisionacademy.com/api/v1/"
       }
     ],
     "targets": [

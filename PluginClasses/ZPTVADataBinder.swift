@@ -25,7 +25,7 @@ class ZPDataBinderTVA: ZPGeneralBaseProvider, ZPGeneralPluginUIProtocol {
             baseApi = baseApiUrl
         }
         else{
-            baseApi = "https://api.view.televisionacademy.com/api/v1"
+            baseApi = "https://api.view.televisionacademy.com/api/v1/"
         }
     }
     
