@@ -16,7 +16,8 @@ class ZPTVACellViewController : CACellViewController {
     
     var atomEntry:APAtomEntry?
     var atomFeed: APAtomFeed?
-    let layoutArray = ["Family_5_horizontal_list_13", "Family_5_grid_11", "Family_5_grid_12" ]
+    let layoutArray = ["Family_5_horizontal_list_13", "Family_5_grid_11", "Family_5_grid_12"]
+    let unsuportedFavoriteLayouts = ["Family_5_list_9"]
     
     override func displayAtomEntry(_ entry: NSObject) {
         if let entry = entry as? APAtomEntry {
@@ -45,13 +46,14 @@ class ZPTVACellViewController : CACellViewController {
     
     //populates an atomEntry with extensions' parameters
     func populateEntry(with atomEntry: APAtomEntry) {
-
+        hideUnsupportedFavorites()
     }
     
     func populateFeed(with atomFeed: APAtomFeed) {
         setTags(with: atomFeed)
         getFavorites(with: atomFeed)
         setFavoritesActionTapped()
+        hideUnsupportedFavorites()
     }
     
     private func setTags(with atomFeed: APAtomFeed){
@@ -126,13 +128,15 @@ class ZPTVACellViewController : CACellViewController {
         guard let favoriteBtn = isFavoriteSupported() else{
             return
         }
-        favoriteBtn.isHidden = false;
+        favoriteBtn.isHidden = false
         getFavouriteState(uid: atomFeed.identifier) { (on) in
-            if let state = on{
-                if(state){
-                    favoriteBtn.isSelected = true
-                }else{
-                    favoriteBtn.isSelected = false
+            DispatchQueue.onMain {
+                if let state = on{
+                    if(state){
+                        favoriteBtn.isSelected = true
+                    }else{
+                        favoriteBtn.isSelected = false
+                    }
                 }
             }
         }
@@ -172,5 +176,15 @@ class ZPTVACellViewController : CACellViewController {
     
     override func prepareComponentForReuse() {
         super.prepareComponentForReuse()
+    }
+    
+    private func hideUnsupportedFavorites() {
+        guard let layout = self.currentComponentModel()?.style["layout_name"] as? String,
+            let favoriteBtn = favoritesButton,
+            unsuportedFavoriteLayouts.contains(layout) else {
+            return
+        }
+        
+        favoriteBtn.isHidden = true
     }
 }

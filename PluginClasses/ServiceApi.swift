@@ -16,7 +16,7 @@ import Foundation
 let tokenKey = "AWSCognitoTokenKey"
 let defaults = UserDefaults.standard
 var baseApi :String?
-let favouritePath = "/userlists/favorites/"
+let favouritePath = "userlists/favorites/"
 let deleteResponseArray: [Int] = HTTPStatusCode.allCases.map{$0.rawValue}
 
 /*
