@@ -18,6 +18,7 @@ class ZPTVACellViewController : CACellViewController {
     var atomFeed: APAtomFeed?
     let layoutArray = ["Family_5_horizontal_list_13", "Family_5_grid_11", "Family_5_grid_12"]
     let unsuportedFavoriteLayouts = ["Family_5_list_9"]
+    let unsuportedTag1Layouts = ["Family_5_horizontal_list_13"]
     
     override func displayAtomEntry(_ entry: NSObject) {
         if let entry = entry as? APAtomEntry {
@@ -57,16 +58,22 @@ class ZPTVACellViewController : CACellViewController {
     }
     
     private func setTags(with atomFeed: APAtomFeed){
-        if let tag1 = atomFeed.extensions?["tag1"] as? String{
-            if  let style = getStyle(styleName:tag1){
-                for (index,label) in self.labelsCollection.enumerated(){
-                    if(index == 1){
-                        label.setColor(key: style.textColor, from: style.styleDic)
-                        label.setBackgroundColor(key: style.backgroundColor, from: style.styleDic)
-                        label.setFont(fontNameKey: style.font, fontSizeKey: style.textSize, from: style.styleDic)
+        if let
+            layout = self.currentComponentModel()?.style["layout_name"] as? String,
+            unsuportedTag1Layouts.contains(layout) == false{
+              if let tag1 = atomFeed.extensions?["tag1"] as? String{
+                    if  let style = getStyle(styleName:tag1){
+                        if self.labelsCollection != nil{
+                            for (index,label) in self.labelsCollection.enumerated(){
+                                if(index == 1){
+                                    label.setColor(key: style.textColor, from: style.styleDic)
+                                    label.setBackgroundColor(key: style.backgroundColor, from: style.styleDic)
+                                    label.setFont(fontNameKey: style.font, fontSizeKey: style.textSize, from: style.styleDic)
+                                }
+                            }
+                        }
                     }
                 }
-            }
         }
         
         if let tag0 = atomFeed.extensions?["tag0"] as? String{
